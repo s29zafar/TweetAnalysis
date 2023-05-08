@@ -1,6 +1,6 @@
 # Importing the data
 library(readr)
-mydata <- read_csv("Desktop/Stat 231/A2/stat231dataset20888160.csv")
+mydata <- read_csv("dataset.csv")
 mydata$likes.log <- log(mydata$likes + 1)
 mydata$length.long <- as.numeric(mydata$length >= median(mydata$length))
 
