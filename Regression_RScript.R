@@ -1,7 +1,6 @@
 library(readr)
 data_A4 <- read_csv("dataset.csv")
-# Analysis 1 : Hashtags
-# B
+#  Hashtags
 n <- length(data_A4$hashtags.binary)
 head(data_A4)
 summary(data_A4$hashtags.binary)
@@ -18,7 +17,7 @@ lambdaB_sqrt = sqrt(lambdaB)
 P_Value_B2 <- 2*(1-pchisq(lambdaB,df = 1))
 P_Value_B <- 2*(1-pnorm(lambdaB_sqrt,1,0))
 
-# Analysis 2: Time Between Tweets Revisited
+# Time Between Tweets Revisited
 data_A4$tweet.gap.hour <- data_A4$tweet.gap/3600
 tgh.first <- data_A4$tweet.gap.hour[data_A4$first.tweet == 1  & data_A4$tweet.gap.hour <= 24]
 summary(tgh.first)
@@ -60,7 +59,7 @@ S <- sd(tf1)
 lambda <- abs(Y-MU0)/(S/sqrt(n))
 p_value <-  2*(1-pt(lambda,n-1))
 
-# Analysis 3: Length and Likes Revisited
+# Length and Likes Revisited
 # length as the explanatory variate, and likes.log as the response variate
 par(mfrow = c(1, 1))
 user <- subset(data_A4, subset = (username == "@CPHO_Canada"))
@@ -75,11 +74,11 @@ summary(user$length)
 confint(mod, level = 0.95)
 
 sigma(mod)
-# Q3(e)
+
 plot(user$length, likes.log, xlab = "Length of tweet", ylab = "log of likes",
      main = "Scatterplot of Length versus the log of likes", pch = 1, cex = 0.5, col = 1)
 abline(coef(mod), lwd = 2, lty = 2, col = "red")
-# Q3(f)
+
 stdres <- rstandard(mod)
 mean(stdres)
 sd(stdres)
@@ -93,7 +92,7 @@ qqnorm(stdres, main = "Q-Q plot of the standardized residuals",
        xlab = "G(0, 1) Quantiles", ylab = "Standardized Residuals",
        pch = 1, col = "navy", cex = 0.5)
 qqline(stdres, lty = 2, col = "red", lwd = 2)
-#Q3h
+
 predictedValueB <- 3.2076781 + 0.0025046*200
 predict(mod, newdata1234 = data.frame("length" = 200))
 
@@ -102,7 +101,7 @@ predict(mod, newdata = data.frame("length" = 200), interval = "prediction", leve
 summary(mod)
 pvaluesQ3 <- 2*(1 - pt(0.0025046/0.0007296, 230))
 
-# Analysis 4
+
 data_A4$likes.log = log(data_A4$likes + 1)
 userA4_0 <- subset(data_A4, subset = (username == "@CPHO_Canada" & media.binary == 0))
 userA4_1 <- subset(data_A4, subset = (username == "@CPHO_Canada" & media.binary == 1))
