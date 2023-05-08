@@ -1,6 +1,6 @@
 # Importing the data
 library(readr)
-mydata <- read_csv("Desktop/Stat 231/A1/stat231dataset20888160.csv")
+mydata <- read_csv("dataset.csv")
 # Selecting the personal and organizational accounts [Q1(a)]
 user1 <- subset(mydata, subset = (username == "@theJagmeetSingh"))
 user2 <- subset(mydata, subset = (username == "@UWaterloo"))
